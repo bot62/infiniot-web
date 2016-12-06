@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.i18n.encoding" value="UTF-8" />
+    <constant name="struts.action.extension" value="action,do," />
+    <constant name="struts.objectFactory" value="spring" />
+    <!-- This package is set for user authentification request, sent from website or from mobile device. The default interceptor 
+        stack is used here, because we shouldn't intercept user's login request. Want to know more about defaultStack ? Check : Apache 
+        Struts 2 Documentation: Interceptors https://struts.apache.org/docs/interceptors.html#Interceptors-TheDefaultConfiguration -->
+    <package name="auth" namespace="/auth" extends="default">
+        <action name="sign*" class="fr.irseem.action.UserAction" method="sign{1}">
+            <interceptor-ref name="defaultStack" />
+            <result name="success" type="redirect">/</result>
+            <result name="json">/WEB-INF/view/json.jsp</result>
+        </action>
+        <action name="get*" class="fr.irseem.action.UserAction" method="get{1}">
+            <interceptor-ref name="defaultStack" />
+            <result name="success" type="redirect">/</result>
+            <result name="json">/WEB-INF/view/json.jsp</result>
+        </action>
+    </package>
+    <!-- This package is set for WSN request, sent from website or from mobile device. The login interceptor stack is used 
+        here, because we intercept request. Only authentified users can ask for WSN related data. WSN = Wireless Sensor Network -->
+    <package name="wsn" namespace="/wsn" extends="struts-default">
+        <action name="*" class="fr.irseem.action.WSNAction" method="{1}">
+            <interceptor-ref name="defaultStack" />
+            <result name="admin" type="redirect">/admin</result>
+            <result name="success">/</result>
+            <result name="error">/WEB-INF/view/error.jsp</result>
+            <result name="login" type="redirect">/WEB-INF/view/login.jsp</result>
+            <result name="welcome" type="redirect">/</result>
+            <result name="json">/WEB-INF/view/json.jsp</result>
+        </action>
+    </package>
+    <package name="default" extends="struts-default">
+        <interceptors>
+            <interceptor name="login" class="fr.irseem.core.LoginInterceptor" />
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="login" />
+                <interceptor-ref name="defaultStack">
+                    <param name="exception.logEnabled">true</param>
+                    <param name="exception.logLevel">error</param>
+                </interceptor-ref>
+            </interceptor-stack>
+            <interceptor-stack name="exceptionStack">
+                <interceptor-ref name="defaultStack">
+                    <param name="exception.logEnabled">true</param>
+                    <param name="exception.logLevel">error</param>
+                </interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="loginStack" />
+        <global-results>
+            <!-- frequently used pages mapping -->
+            <result name="login">/WEB-INF/view/login.jsp</result>
+            <result name="error">/WEB-INF/view/error.jsp</result>
+            <result name="success" type="redirect">/index.jsp</result>
+            <result name="welcome" type="redirect">/index.jsp</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping result="error" exception="java.lang.Exception" />
+        </global-exception-mappings>
+        <action name="about-us">
+            <result>/WEB-INF/view/about-us.jsp</result>
+        </action>
+        <action name="add-sensor">
+            <result>/WEB-INF/view/add-sensor.jsp</result>
+        </action>
+        <action name="admin" class="fr.irseem.action.PageAction" method="admin">
+            <result>/WEB-INF/view/admin.jsp</result>
+        </action>
+        <action name="node" class="fr.irseem.action.PageAction" method="node">
+            <result name="node">/WEB-INF/view/nodes.jsp</result>
+        </action>
+        <action name="sensor">
+            <result name="success">/WEB-INF/view/sensors.jsp</result>
+        </action>
+    </package>
+</struts>

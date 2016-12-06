@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="fr.irseem.model">
+    <class name="User" table="users">
+        <id name="uid" column="id">
+            <generator class="native" />
+        </id>
+        <property name="password" />
+        <property name="firstname" />
+        <property name="lastname" />
+        <property name="role" />
+        <property name="email" />
+        <property name="insertDate" column="insert_date" />
+    </class>
+</hibernate-mapping>

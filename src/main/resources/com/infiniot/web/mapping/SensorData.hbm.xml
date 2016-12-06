@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="fr.irseem.model">
+    <class name="LibeliumSensorData" table="sensorParser">
+        <id name="sid" column="id">
+            <generator class="native" />
+        </id>
+        <!-- For possible values in the `sensor` column, please check fr.irseem.model.Sensor. Values are shored in final 
+            fields. Otherwise, you can check the official libelium datasheet: http://www.libelium.com/uploads/2013/02/data_frame_guide.pdf -->
+        <property name="type" column="sensor" />
+        <property name="value" type="float" />
+        <property name="timestamp" type="timestamp" />
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="fr.irseem.model">
+    <class name="SensorValue0605" table="realtime_data">
+        <id name="id">
+            <generator class="native" />
+        </id>
+        <property name="offset" column="t" type="long" />
+        <property name="sensor1" column="sensor_1" />
+        <property name="sensor2" column="sensor_2" />
+        <property name="sensor3" column="sensor_3" />
+        <property name="sensor4" column="sensor_4" />
+        <property name="sensor5" column="sensor_5" />
+        <property name="sensor6" column="sensor_6" />
+        <property name="sensor7" column="sensor_7" />
+        <property name="sensor8" column="sensor_8" />
+        <property name="sensor9" column="sensor_9" />
+        <property name="sensor10" column="sensor_10" />
+        <property name="sensor11" column="sensor_11" />
+        <property name="sensor12" column="sensor_12" />
+        <property name="sensor13" column="sensor_13" />
+        <property name="sensor14" column="sensor_14" />
+        <property name="sensor15" column="sensor_15" />
+        <property name="sensor16" column="sensor_16" />
+        <property name="sensor17" column="sensor_17" />
+        <property name="sensor18" column="sensor_18" />
+        <property name="sensor19" column="sensor_19" />
+        <property name="sensor20" column="sensor_20" />
+        <property name="sensor21" column="sensor_21" />
+        <property name="sensor22" column="sensor_22" />
+        <property name="sensor23" column="sensor_23" />
+        <property name="sensor24" column="sensor_24" />
+        <property name="sensor25" column="sensor_25" />
+        <property name="expDate" column="exp_date" type="timestamp" />
+    </class>
+</hibernate-mapping>
