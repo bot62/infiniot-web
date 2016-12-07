@@ -4,11 +4,12 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.infiniot</groupId>
-    <artifactId>web</artifactId>
+    <artifactId>infiniot-web</artifactId>
     <packaging>war</packaging>
     <version>0.1</version>
 
-    <name>Infiniot Web</name>
+    <name>${project.artifactId}</name>
+    <description>Infinite IoT - Web server</description>
 
     <repositories>
         <repository>
@@ -17,8 +18,8 @@
         </repository>
     </repositories>
 
-    <!-- tag::frameworks[] -->
     <properties>
+        <webapp.name>infiniot</webapp.name>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.7</java.version>
         <spring.version>4.1.6.RELEASE</spring.version>
@@ -28,6 +29,7 @@
         <mysql.connector.version>5.1.36</mysql.connector.version>
         <mqtt.version>1.0.2</mqtt.version>
     </properties>
+
     <dependencies>
         <!-- Spring::Core Utilities -->
         <dependency>
@@ -115,12 +117,6 @@
             <artifactId>struts2-spring-plugin</artifactId>
             <version>${struts.version}</version>
         </dependency>
-        <!-- mybatis -->
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.3.0</version>
-        </dependency>
         <!-- hibernate -->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -175,9 +171,8 @@
             <version>1.2</version>
         </dependency>
     </dependencies>
-    <!-- end::frameworks[] -->
+
     <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
@@ -187,7 +182,7 @@
                 <configuration>
                     <url>http://localhost:8080/manager/text</url>
                     <server>TomcatServerLocalhost</server>
-                    <path>/smart4j</path>
+                    <path>/${webapp.name}</path>
                     <username>${username}</username>
                     <password>${password}</password>
                 </configuration>
@@ -239,10 +234,5 @@
                 <version>2.6</version>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
     </build>
 </project>
