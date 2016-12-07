@@ -1,8 +1,15 @@
 # Infiniot Web
 
-Under construction
+Inifiot Web is a server-side solution for IoT system monitoring.
 
-## Code Style
+## Contributions
+
+### Import to Eclipse
+
+* File > Import > Existing Maven Projects
+* Right Click Project > Properties > Targeted Runtimes > Apache Tomcat v8.0
+
+### Code Style
 
 We use [Google Java Code Style][style-java] for this repo.
 
