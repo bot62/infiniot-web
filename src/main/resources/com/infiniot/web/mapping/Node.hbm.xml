@@ -3,18 +3,19 @@
   "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="com.infiniot.web.model">
-    <class name="Node" table="nodes">
-        <id name="nid" column="id">
-            <!-- <generator class="native"/> -->
-        </id>
-        <property name="type" />
-        <property name="building" column="bid" />
-        <property name="floor" column="fid" />
-        <property name="room" column="rid" />
-        <property name="battery" />
-        <property name="description" />
-        <property name="longitude" />
-        <property name="latitude" />
-        <!-- <property name="insertDate" column="insert_date"/> <property name="updateDate" column="update_date"/> -->
-    </class>
+  <class name="Node" table="nodes">
+    <id name="nid" column="id">
+      <!-- <generator class="native"/> -->
+    </id>
+    <property name="type" />
+    <property name="building" column="bid" />
+    <property name="floor" column="fid" />
+    <property name="room" column="rid" />
+    <property name="battery" />
+    <property name="description" />
+    <property name="longitude" />
+    <property name="latitude" />
+    <!-- <property name="insertDate" column="insert_date"/> <property name="updateDate" 
+      column="update_date"/> -->
+  </class>
 </hibernate-mapping>
