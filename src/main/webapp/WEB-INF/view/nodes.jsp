@@ -6,7 +6,9 @@
 <jsp:include page="/WEB-INF/utils/header.jsp" />
 
 <%-- import scripts --%>
-<script>var projectName = "${pageContext.request.contextPath}";</script>
+<script>
+  var projectName = "${pageContext.request.contextPath}";
+</script>
 <script src="${pageContext.request.contextPath}/resources/js/nodes.js"></script>
 <script src="${pageContext.request.contextPath}/ext/Highcharts-4/js/highcharts.js"></script>
 <script src="${pageContext.request.contextPath}/ext/Highcharts-4/js/modules/exporting.js"></script>
@@ -24,16 +26,26 @@
       <img class="center-block" src="${pageContext.request.contextPath}/resources/image/waspmote-150x150.jpg" alt="node 2">
       <p class="h4 text-center">${node.nid}</p>
       <ul class="li-style-none">
-        <li><span style="width: 25px;"
-          class="
-            <c:choose>
-              <c:when test="${node.battery >= 0.8}">text-center fa fa-battery-4</c:when>
-              <c:when test="${node.battery >= 0.6 && node.battery < 0.8}">text-center fa fa-battery-3</c:when>
-              <c:when test="${node.battery >= 0.4 && node.battery < 0.6}">text-center fa fa-battery-2</c:when>
-              <c:when test="${node.battery >= 0.05 && node.battery < 0.4}">text-center fa fa-battery-1</c:when>
-              <c:when test="${node.battery < 0.05}">text-center fa fa-battery-0</c:when>
-            </c:choose>">
-        </span> <fmt:formatNumber type="percent" maxIntegerDigits="3" value="${node.battery}" /></li>
+        <li>
+          <c:choose>
+            <c:when test="${node.battery >= 0.8}">
+              <span style="width: 25px;" class="text-center fa fa-battery-4"></span>
+            </c:when>
+            <c:when test="${node.battery >= 0.6 && node.battery < 0.8}">
+              <span style="width: 25px;" class="text-center fa fa-battery-3"></span>
+            </c:when>
+            <c:when test="${node.battery >= 0.4 && node.battery < 0.6}">
+              <span style="width: 25px;" class="text-center fa fa-battery-2"></span>
+            </c:when>
+            <c:when test="${node.battery >= 0.05 && node.battery < 0.4}">
+              <span style="width: 25px;" class="text-center fa fa-battery-1"></span>
+            </c:when>
+            <c:when test="${node.battery < 0.05}">
+              <span style="width: 25px;" class="text-center fa fa-battery-0"></span>
+            </c:when>
+          </c:choose>
+          <fmt:formatNumber type="percent" maxIntegerDigits="3" value="${node.battery}" />
+        </li>
         <li><span class="fa fa-signal text-center" style="width: 25px;"></span> ${node.type}</li>
         <li><span class="fa fa-clock-o text-center" style="width: 25px;"></span> 1j 23h+</li>
         <li><span class="fa fa-map-marker text-center" style="width: 25px"></span> ${node.room}, ${node.floor}, ${node.building}</li>

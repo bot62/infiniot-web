@@ -4,11 +4,13 @@
 <jsp:include page="/WEB-INF/utils/header.jsp" />
 
 <%-- import scripts --%>
-<script src="<%=request.getContextPath()%>/ext/Highcharts-4/js/highcharts.js"></script>
-<script src="<%=request.getContextPath()%>/ext/Highcharts-4/js/modules/exporting.js"></script>
+<script src="${pageContext.request.contextPath}/ext/Highcharts-4/js/highcharts.js"></script>
+<script src="${pageContext.request.contextPath}/ext/Highcharts-4/js/modules/exporting.js"></script>
 
 <%-- set project name for external js --%>
-<script>var projectName = "<%=request.getContextPath()%>";</script>
+<script>
+  var projectName = "${pageContext.request.contextPath}";
+</script>
 
 <div class="page-header">
   <h1>Sensor Tracker</h1>
@@ -97,6 +99,6 @@
 </table>
 
 <%-- Highchart implementation --%>
-<script src="<%=request.getContextPath()%>/resources/js/sensors.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/sensors.js"></script>
 
 <jsp:include page="/WEB-INF/utils/footer.jsp" />
