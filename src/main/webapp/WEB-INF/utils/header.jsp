@@ -30,7 +30,7 @@
 <meta name="theme-color" content="#ffffff">
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="https://raw.githubusercontent.com/Caligatio/jsSHA/master/src/sha1.js"></script>
+<script src="<%= projectName %>/ext/jsSHA/sha1.js"></script>
 </head>
 <body>
   <!-- Navigation -->
