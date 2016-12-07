@@ -2,10 +2,7 @@
 
 <%-- header --%>
 <jsp:include page="/WEB-INF/utils/header.jsp" />
-
-<%-- import scripts --%>
-<script src="${pageContext.request.contextPath}/ext/Highcharts-4/js/highcharts.js"></script>
-<script src="${pageContext.request.contextPath}/ext/Highcharts-4/js/modules/exporting.js"></script>
+<jsp:include page="/WEB-INF/utils/import-highcharts.jsp" />
 
 <%-- set project name for external js --%>
 <script>
