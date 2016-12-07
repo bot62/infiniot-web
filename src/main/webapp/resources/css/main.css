@@ -1,27 +1,27 @@
 span.filter {
-	color: #FFF; /* IE */
-	color: rgba(255, 255, 255, 0);
+  color: #FFF; /* IE */
+  color: rgba(255, 255, 255, 0);
 }
 
 span.filter.filtered {
-	color: #000;
+  color: #000;
 }
 
 th:hover>span.filter {
-	color: #BDBDBD;
-	cursor: pointer;
+  color: #BDBDBD;
+  cursor: pointer;
 }
 
 th:hover>span.filter.filtered {
-	color: #6E6E6E;
-	cursor: pointer;
+  color: #6E6E6E;
+  cursor: pointer;
 }
 
 ul.li-style-none>li {
-	list-style-type: none;
+  list-style-type: none;
 }
 
 .nd-div:hover {
-	background-color: rgba(0, 0, 0, .1);
-	cursor: pointer;
+  background-color: rgba(0, 0, 0, .1);
+  cursor: pointer;
 }
