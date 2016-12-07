@@ -10,12 +10,12 @@
         stack is used here, because we shouldn't intercept user's login request. Want to know more about defaultStack ? Check : Apache 
         Struts 2 Documentation: Interceptors https://struts.apache.org/docs/interceptors.html#Interceptors-TheDefaultConfiguration -->
     <package name="auth" namespace="/auth" extends="default">
-        <action name="sign*" class="fr.irseem.action.UserAction" method="sign{1}">
+        <action name="sign*" class="com.infiniot.web.action.UserAction" method="sign{1}">
             <interceptor-ref name="defaultStack" />
             <result name="success" type="redirect">/</result>
             <result name="json">/WEB-INF/view/json.jsp</result>
         </action>
-        <action name="get*" class="fr.irseem.action.UserAction" method="get{1}">
+        <action name="get*" class="com.infiniot.web.action.UserAction" method="get{1}">
             <interceptor-ref name="defaultStack" />
             <result name="success" type="redirect">/</result>
             <result name="json">/WEB-INF/view/json.jsp</result>
@@ -24,7 +24,7 @@
     <!-- This package is set for WSN request, sent from website or from mobile device. The login interceptor stack is used 
         here, because we intercept request. Only authentified users can ask for WSN related data. WSN = Wireless Sensor Network -->
     <package name="wsn" namespace="/wsn" extends="struts-default">
-        <action name="*" class="fr.irseem.action.WSNAction" method="{1}">
+        <action name="*" class="com.infiniot.web.action.WSNAction" method="{1}">
             <interceptor-ref name="defaultStack" />
             <result name="admin" type="redirect">/admin</result>
             <result name="success">/</result>
@@ -36,7 +36,7 @@
     </package>
     <package name="default" extends="struts-default">
         <interceptors>
-            <interceptor name="login" class="fr.irseem.core.LoginInterceptor" />
+            <interceptor name="login" class="com.infiniot.web.core.LoginInterceptor" />
             <interceptor-stack name="loginStack">
                 <interceptor-ref name="login" />
                 <interceptor-ref name="defaultStack">
@@ -68,10 +68,10 @@
         <action name="add-sensor">
             <result>/WEB-INF/view/add-sensor.jsp</result>
         </action>
-        <action name="admin" class="fr.irseem.action.PageAction" method="admin">
+        <action name="admin" class="com.infiniot.web.action.PageAction" method="admin">
             <result>/WEB-INF/view/admin.jsp</result>
         </action>
-        <action name="node" class="fr.irseem.action.PageAction" method="node">
+        <action name="node" class="com.infiniot.web.action.PageAction" method="node">
             <result name="node">/WEB-INF/view/nodes.jsp</result>
         </action>
         <action name="sensor">

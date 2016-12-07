@@ -3,12 +3,12 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>fr.irseem.smartp3</groupId>
-    <artifactId>smart4j</artifactId>
+    <groupId>com.infiniot</groupId>
+    <artifactId>web</artifactId>
     <packaging>war</packaging>
-    <version>0.3.0</version>
+    <version>0.1</version>
 
-    <name>Ping32J</name>
+    <name>Infiniot Web</name>
 
     <repositories>
         <repository>

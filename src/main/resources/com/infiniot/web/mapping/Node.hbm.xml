@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC
   "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
   "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<hibernate-mapping package="fr.irseem.model">
+<hibernate-mapping package="com.infiniot.web.model">
     <class name="Node" table="nodes">
         <id name="nid" column="id">
             <!-- <generator class="native"/> -->
