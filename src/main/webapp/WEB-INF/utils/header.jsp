@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,36 +45,39 @@
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <% if(session.getAttribute("user") == null) { %>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#login-email">Log in</a></li>
-          <!-- <li><a href="#">Sign up</a></li> -->
-        </ul>
-        <% } else { %>
-        <ul class="nav navbar-nav">
-          <li><a href="${pageContext.request.contextPath}/add-sensor">Nouveaux appareils</a></li>
-          <li><a href="${pageContext.request.contextPath}/node">Nœuds</a></li>
-          <li><a href="${pageContext.request.contextPath}/admin">Admin</a></li>
-          <li><a href="${pageContext.request.contextPath}/about-us">A propos</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bienvenue<span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              <!-- <li><a href="${pageContext.request.contextPath}/getting-started">Getting started</a></li> -->
-              <li><a href="${pageContext.request.contextPath}/auth/signout">Log out</a></li>
-            </ul></li>
-        </ul>
-        <% } %>
+        <c:choose>
+          <c:when test="${empty user}">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#login-email">Log in</a></li>
+              <!-- <li><a href="#">Sign up</a></li> -->
+            </ul>
+          </c:when>
+          <c:otherwise>
+            <ul class="nav navbar-nav">
+              <li><a href="${pageContext.request.contextPath}/add-sensor">Nouveaux appareils</a></li>
+              <li><a href="${pageContext.request.contextPath}/node">Nœuds</a></li>
+              <li><a href="${pageContext.request.contextPath}/admin">Admin</a></li>
+              <li><a href="${pageContext.request.contextPath}/about-us">A propos</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bienvenue<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <!-- <li><a href="${pageContext.request.contextPath}/getting-started">Getting started</a></li> -->
+                  <li><a href="${pageContext.request.contextPath}/auth/signout">Log out</a></li>
+                </ul></li>
+            </ul>
+          </c:otherwise>
+        </c:choose>
       </div>
     </div>
   </nav>
   <div class="container">
     <!-- Alerts -->
-    <% if(((String)session.getAttribute("errorMessage")) != null) { %>
-    <div class="alert alert-danger alert-dismissible" role="alert">
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <%=((String)session.getAttribute("errorMessage")) %>
-    </div>
-    <% } %>
+    <c:if test="${not empty errorMessage}">
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <c:out value="${errorMessage}" />
+      </div>
+    </c:if>
