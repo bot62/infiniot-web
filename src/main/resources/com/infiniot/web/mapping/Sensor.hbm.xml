@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC
-    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-
-<hibernate-mapping package="fr.irseem.model">
-    <class name="Sensor" table="sensors">
-        <id name="sid" column="id">
-            <!-- <generator class="native"/> -->
-        </id>
-        <property name="type" />
-        <property name="currentValue" column="current_value" />
-        <property name="building" column="bid" />
-        <property name="floor" column="fid" />
-        <property name="room" column="rid" />
-        <property name="description" />
-        <property name="timestamp" type="long" />
-        <property name="nid" />
-        <property name="name" />
-    </class>
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.infiniot.web.model">
+  <class name="Sensor" table="sensors">
+    <id name="sid" column="id">
+      <!-- <generator class="native"/> -->
+    </id>
+    <property name="type" />
+    <property name="currentValue" column="current_value" />
+    <property name="building" column="bid" />
+    <property name="floor" column="fid" />
+    <property name="room" column="rid" />
+    <property name="description" />
+    <property name="timestamp" type="long" />
+    <property name="nid" />
+    <property name="name" />
+  </class>
 </hibernate-mapping>

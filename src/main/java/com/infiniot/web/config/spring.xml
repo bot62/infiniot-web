@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
                       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
                       http://www.springframework.org/schema/context
                       http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-    <context:component-scan base-package="fr.irseem.config" />
+  <context:component-scan base-package="com.infiniot.web.config" />
 
-    <!-- Actions -->
-    <bean id="fr.irseem.action.UserAction" class="fr.irseem.action.UserAction">
-        <property name="loginService">
-            <ref bean="fr.irseem.service.LoginService" />
-        </property>
-    </bean>
-    <bean id="fr.irseem.action.PageAction" class="fr.irseem.action.PageAction">
-        <property name="wsnService">
-            <ref bean="fr.irseem.service.WSNService" />
-        </property>
-    </bean>
-    <bean id="fr.irseem.action.WSNAction" class="fr.irseem.action.WSNAction">
-        <property name="wsnService">
-            <ref bean="fr.irseem.service.WSNService" />
-        </property>
-    </bean>
+  <!-- Actions -->
+  <bean id="com.infiniot.web.action.UserAction" class="com.infiniot.web.action.UserAction">
+    <property name="loginService">
+      <ref bean="com.infiniot.web.service.LoginService" />
+    </property>
+  </bean>
+  <bean id="com.infiniot.web.action.PageAction" class="com.infiniot.web.action.PageAction">
+    <property name="wsnService">
+      <ref bean="com.infiniot.web.service.WSNService" />
+    </property>
+  </bean>
+  <bean id="com.infiniot.web.action.WSNAction" class="com.infiniot.web.action.WSNAction">
+    <property name="wsnService">
+      <ref bean="com.infiniot.web.service.WSNService" />
+    </property>
+  </bean>
 
-    <!-- Services -->
-    <bean name="fr.irseem.service.LoginService" class="fr.irseem.service.impl.LoginServiceImpl">
-        <property name="dao" ref="fr.irseem.dao.UserDAO" />
-    </bean>
-    <bean name="fr.irseem.service.WSNService" class="fr.irseem.service.impl.WSNServiceImpl">
-        <property name="sensorDAO" ref="fr.irseem.dao.SensorDAO" />
-        <property name="test0605DAO" ref="fr.irseem.dao.Test0605DAO" />
-        <property name="userDAO" ref="fr.irseem.dao.UserDAO" />
-        <property name="nodeDAO" ref="fr.irseem.dao.NodeDAO" />
-    </bean>
+  <!-- Services -->
+  <bean name="com.infiniot.web.service.LoginService" class="com.infiniot.web.service.impl.LoginServiceImpl">
+    <property name="dao" ref="com.infiniot.web.dao.UserDAO" />
+  </bean>
+  <bean name="com.infiniot.web.service.WSNService" class="com.infiniot.web.service.impl.WSNServiceImpl">
+    <property name="sensorDAO" ref="com.infiniot.web.dao.SensorDAO" />
+    <property name="test0605DAO" ref="com.infiniot.web.dao.Test0605DAO" />
+    <property name="userDAO" ref="com.infiniot.web.dao.UserDAO" />
+    <property name="nodeDAO" ref="com.infiniot.web.dao.NodeDAO" />
+  </bean>
 
-    <!-- DAOs -->
-    <bean name="fr.irseem.dao.SensorDAO" class="fr.irseem.dao.hibernate.SensorDAOImpl" />
-    <bean name="fr.irseem.dao.Test0605DAO" class="fr.irseem.dao.hibernate.Test0605DAOImpl" />
-    <bean name="fr.irseem.dao.UserDAO" class="fr.irseem.dao.hibernate.UserDAOImpl" />
-    <bean name="fr.irseem.dao.NodeDAO" class="fr.irseem.dao.hibernate.NodeDAOImpl" />
+  <!-- DAOs -->
+  <bean name="com.infiniot.web.dao.SensorDAO" class="com.infiniot.web.dao.hibernate.SensorDAOImpl" />
+  <bean name="com.infiniot.web.dao.Test0605DAO" class="com.infiniot.web.dao.hibernate.Test0605DAOImpl" />
+  <bean name="com.infiniot.web.dao.UserDAO" class="com.infiniot.web.dao.hibernate.UserDAOImpl" />
+  <bean name="com.infiniot.web.dao.NodeDAO" class="com.infiniot.web.dao.hibernate.NodeDAOImpl" />
 </beans>

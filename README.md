@@ -1,20 +1,29 @@
 # Infiniot Web
 
-Under construction
+Inifiot Web is a server-side solution for IoT system monitoring.
 
-## Code Style
+## Contributions
 
-We use [Google Java Code Style][style-java] for this repo. If you use Eclipse,
-please setup the Eclipse code style using
-[eclipse-java-google-style.xml][style-eclipse], provided by Google. Read [How do
-I modify Eclipse code formatting?][so-format] for more detail. Before any
-commit:
+### Import to Eclipse
 
-- <kbd>⌘</kbd>+<kbd>A</kbd> select all
-- <kbd>⌘</kbd>+<kbd>SHIFT</kbd>+<kbd>F</kbd> format code
+* File > Import > Existing Maven Projects
+* Right Click Project > Properties > Targeted Runtimes > Apache Tomcat v8.0
 
-If you use other IDE, you should respect the Google Java code style too.
+### Code Style
 
+We use [Google Java Code Style][style-java] for this repo.
+
+* Java
+  * [Setup Eclipse code formatting][so-format] using
+    [eclipse-java-google-style.xml][style-eclipse]
+  * <kbd>⌘</kbd>+<kbd>A</kbd> select all
+  * <kbd>⌘</kbd>+<kbd>SHIFT</kbd>+<kbd>F</kbd> format code
+* JavaScript
+  * [Formatting .js with clang format][js-format]
+* Other types of file
+  * No solution yet
+
+[js-format]: https://github.com/google/closure-library/wiki/Formatting-.js-with-clang-format
 [so-format]: http://stackoverflow.com/questions/1601793/how-do-i-modify-eclipse-code-formatting
 [style-java]: https://google.github.io/styleguide/javaguide.html
 [style-eclipse]: https://github.com/google/styleguide/blob/gh-pages/eclipse-java-google-style.xml

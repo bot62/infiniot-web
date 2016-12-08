@@ -7,7 +7,8 @@ import java.util.Map;
 import com.infiniot.web.model.Sensor;
 
 /**
- * Sensor helper helps to handle conversion related to model class fr.irseem.model.Sensor
+ * Sensor helper helps to handle conversion related to model class
+ * {@link com.infiniot.web.model.Sensor}.
  * 
  * @author mincong-h
  */
