@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%-- header --%>
 <jsp:include page="/WEB-INF/utils/header.jsp" />
@@ -47,41 +48,38 @@
       </div>
     </div>
   </div>
-  <%
-    if (session.getAttribute("user") == null) {
-  %>
-  <div class="col-md-3 col-md-offset-1 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2">
-    <div class="row">
-      <div class="col-xs-12" style="margin-bottom: 30px;">
-        <ul class="nav nav-tabs">
-          <li id="li-signin" role="presentation" class="active"><a id="signin" href="#signin">Log in</a></li>
-          <!-- <li id="li-signup" role="presentation"><a id="signup" href="#signup">Sign up</a></li> -->
-        </ul>
+  <c:choose>
+    <c:when test="${empty user}">
+      <div class="col-md-3 col-md-offset-1 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2">
+        <div class="row">
+          <div class="col-xs-12" style="margin-bottom: 30px;">
+            <ul class="nav nav-tabs">
+              <li id="li-signin" role="presentation" class="active"><a id="signin" href="#signin">Log in</a></li>
+              <!-- <li id="li-signup" role="presentation"><a id="signup" href="#signup">Sign up</a></li> -->
+            </ul>
+          </div>
+          <form id="target" class="col-xs-12" action="${pageContext.request.contextPath}/auth/signin" method="post">
+            <p id="login-message" class="hidden">This sign-up function is not available for the moment</p>
+            <div id="div-email" class="form-group">
+              <input id="login-email" name="login-email" class="form-control" type="email" placeholder="Email">
+            </div>
+            <div id="div-password" class="form-group">
+              <input id="login-password" name="login-password" class="form-control" type="password" placeholder="Mot de passe">
+            </div>
+            <div id="div-password2" class="form-group hidden">
+              <input id="login-password2" name="login-password2" class="form-control" type="password" placeholder="Confirmer mot de passe">
+            </div>
+            <button id="submit" class="btn btn-success pull-right" type="submit">OK</button>
+          </form>
+        </div>
       </div>
-      <form id="target" class="col-xs-12" action="${pageContext.request.contextPath}/auth/signin" method="post">
-        <p id="login-message" class="hidden">This sign-up function is not available for the moment</p>
-        <div id="div-email" class="form-group">
-          <input id="login-email" name="login-email" class="form-control" type="email" placeholder="Email">
-        </div>
-        <div id="div-password" class="form-group">
-          <input id="login-password" name="login-password" class="form-control" type="password" placeholder="Mot de passe">
-        </div>
-        <div id="div-password2" class="form-group hidden">
-          <input id="login-password2" name="login-password2" class="form-control" type="password" placeholder="Confirmer mot de passe">
-        </div>
-        <button id="submit" class="btn btn-success pull-right" type="submit">OK</button>
-      </form>
-    </div>
-  </div>
-  <%
-    } else {
-  %>
-  <div class="col-md-3 col-md-offset-1 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2">
-    <img class="img-responsive hidden-xs" src="${pageContext.request.contextPath}/resources/image/welcome.jpg" alt="logo">
-  </div>
-  <%
-    }
-  %>
+    </c:when>
+    <c:otherwise>
+      <div class="col-md-3 col-md-offset-1 col-sm-4 col-sm-offset-0 col-xs-8 col-xs-offset-2">
+        <img class="img-responsive hidden-xs" src="${pageContext.request.contextPath}/resources/image/welcome.jpg" alt="logo">
+      </div>
+    </c:otherwise>
+  </c:choose>
 </div>
 
 <%-- footer --%>
