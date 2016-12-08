@@ -10,6 +10,5 @@
     <mapping resource="com/infiniot/web/mapping/Sensor.hbm.xml" />
     <mapping resource="com/infiniot/web/mapping/SensorData.hbm.xml" />
     <mapping resource="com/infiniot/web/mapping/User.hbm.xml" />
-    <mapping resource="com/infiniot/web/mapping/SensorValue0605.hbm.xml" />
   </session-factory>
 </hibernate-configuration>
