@@ -61,10 +61,10 @@
           <form id="target" class="col-xs-12" action="${pageContext.request.contextPath}/auth/signin" method="post">
             <p id="login-message" class="hidden">This sign-up function is not available for the moment</p>
             <div id="div-email" class="form-group">
-              <input id="login-email" name="login-email" class="form-control" type="email" placeholder="Email">
+              <input id="login-email" name="login-email" class="form-control" type="email" value="demo@infiniot.com" placeholder="Email">
             </div>
             <div id="div-password" class="form-group">
-              <input id="login-password" name="login-password" class="form-control" type="password" placeholder="Mot de passe">
+              <input id="login-password" name="login-password" class="form-control" type="password" value="root" placeholder="Mot de passe">
             </div>
             <div id="div-password2" class="form-group hidden">
               <input id="login-password2" name="login-password2" class="form-control" type="password" placeholder="Confirmer mot de passe">

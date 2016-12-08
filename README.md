@@ -2,6 +2,18 @@
 
 Inifiot Web is a server-side solution for IoT system monitoring.
 
+## How to run
+
+### Set up MySQL database
+
+* Create database in MySQL Shell
+
+      CREATE DATABASE infiniot CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+* Import the database structure in terminal
+
+      mysql -u username -p infiniot < ./database/infiniot.sql
+
 ## Contributions
 
 ### Import to Eclipse
