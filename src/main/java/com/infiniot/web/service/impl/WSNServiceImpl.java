@@ -20,7 +20,6 @@ import com.infiniot.web.model.Notification;
 import com.infiniot.web.model.RunningNode;
 import com.infiniot.web.model.Sensor;
 import com.infiniot.web.model.SensorData;
-import com.infiniot.web.model.SensorValue0605;
 import com.infiniot.web.service.WSNService;
 import com.infiniot.web.util.SensorDataHelper;
 import com.infiniot.web.util.SensorHelper;
@@ -53,18 +52,16 @@ public class WSNServiceImpl implements WSNService {
       case Mode.OFF: {
         return nodeDAO.getNodes();
       }
-      case Mode.FROM_PING32M: {
+      case Mode.FROM_HTTP: {
         return nodeDAO.getNodes("ESIG_N_%");
       }
-      case Mode.FIRE_RANDOM:
-      case Mode.FIRE_TEST_1:
-      case Mode.FIRE_TEST_2: {
+      case Mode.FIRE_RANDOM: {
         List<Node> nodes = new ArrayList<Node>();
         nodes.add(nodeDAO.getNode(NID_TEST));
         return nodes;
       }
       default: {
-        return null;
+        throw new IllegalStateException("Mode " + mode + " does not exist.");
       }
     }
   }
@@ -73,7 +70,7 @@ public class WSNServiceImpl implements WSNService {
   public Map<String, Object> getStats(String nid, String sensorName) {
     Map<String, Object> map = new HashMap<>();
     switch (mode) {
-      case Mode.FROM_PING32M: {
+      case Mode.FROM_HTTP: {
         map = this.nodes.get(nid).getStats(sensorName);
         break;
       }
@@ -87,7 +84,7 @@ public class WSNServiceImpl implements WSNService {
   @Override
   public List<Sensor> getSensors(Map<String, String> params) {
     switch (mode) {
-      case Mode.FROM_PING32M: {
+      case Mode.FROM_HTTP: {
         Map<String, Sensor> map = new HashMap<String, Sensor>();
         String nid = params.get("nid");
         // look for node using node id
@@ -102,14 +99,16 @@ public class WSNServiceImpl implements WSNService {
     }
   }
 
+  /**
+   * Sensor data implementation depends on running mode
+   */
   @Override
   public List<SensorData> getSensorData(Map<String, String> params) {
     String nid = params.get("nid");
-    // String sid = params.get("sid");
-    int id = (int) (runningSince() / SensorValue0605.STEP);
-    params.put("id", String.valueOf(id));
     SensorData[] data = new SensorData[0];
-    // sensor data implementation depends on running mode
+    // TODO what's happening here?
+    int id = (int) (runningSince() / 500L);
+    params.put("id", String.valueOf(id));
     switch (mode) {
       case Mode.OFF: {
         data = new SensorData[0];
@@ -120,23 +119,12 @@ public class WSNServiceImpl implements WSNService {
         data = SensorDataHelper.randomDataset(t);
         break;
       }
-      case Mode.FIRE_TEST_1: {
-        // get sensor values
-        data = test0605DAO.getSensorValues(params);
-        this.nodes.get(NID_TEST).add(data);
-        break;
-      }
-      case Mode.FIRE_TEST_2: {
-        // TODO: fire test 2 need to be implemented
-        data = new SensorData[0];
-        break;
-      }
-      case Mode.FROM_PING32M: {
+      case Mode.FROM_HTTP: {
         data = this.nodes.get(nid).lastDataset();
         break;
       }
       default: {
-        break;
+        throw new IllegalStateException("Mode " + mode + " does not exist.");
       }
     }
     return Arrays.asList(data);
@@ -150,17 +138,17 @@ public class WSNServiceImpl implements WSNService {
   @Override
   public void addSensorData(SensorData sensorData, String nid, int index) {
     switch (mode) {
-      case Mode.FROM_PING32M: {
+      case Mode.FROM_HTTP: {
         // look up the correct node device using nid
         this.nodes.get(nid).add(sensorData, index);
         break;
       }
       case Mode.OFF:
-      case Mode.FIRE_RANDOM:
-      case Mode.FIRE_TEST_1:
-      case Mode.FIRE_TEST_2:
-      default: {
+      case Mode.FIRE_RANDOM: {
         break;
+      }
+      default: {
+        throw new IllegalStateException("Mode " + mode + " does not exist.");
       }
     }
   }
@@ -174,7 +162,7 @@ public class WSNServiceImpl implements WSNService {
   public void updateStats(Map<String, String> params) {
 
     switch (mode) {
-      case Mode.FROM_PING32M: {
+      case Mode.FROM_HTTP: {
         String nid = params.get("nid");
         String sid = params.get("sid").toUpperCase();
         long timestamp = Long.valueOf(params.get("timestamp"));
@@ -217,12 +205,7 @@ public class WSNServiceImpl implements WSNService {
         notification = getNotification(results, node);
         break;
       }
-      case Mode.FIRE_TEST_1: {
-        float[] results = this.nodes.get(NID_TEST).statsForNode();
-        notification = getNotification(results, node);
-        break;
-      }
-      case Mode.FROM_PING32M: {
+      case Mode.FROM_HTTP: {
         // TODO: The algorithm is bad and should be changed by somebody.
         // It should only be used in the demonstration.
         //
@@ -253,7 +236,6 @@ public class WSNServiceImpl implements WSNService {
         }
         break;
       }
-      case Mode.FIRE_TEST_2:
       case Mode.OFF: {
         // In OFF mode, the web-server PING32J generates random
         // notification of LEVEL-1, so that Android can test the
@@ -309,7 +291,10 @@ public class WSNServiceImpl implements WSNService {
       // reset node values
       this.nodes = new HashMap<>();
       switch (mode) {
-        case Mode.FROM_PING32M: {
+        case Mode.OFF: {
+          break;
+        }
+        case Mode.FROM_HTTP: {
           List<Sensor> sensors = new ArrayList<>();
           for (Node node : getNodes()) {
             // init running node
@@ -331,16 +316,8 @@ public class WSNServiceImpl implements WSNService {
           this.nodes.put("ESIG_N_001", rn);
           break;
         }
-        case Mode.FIRE_TEST_1:
-        case Mode.FIRE_TEST_2: {
-          Node n = nodeDAO.getNode(NID_TEST);
-          RunningNode rn = new RunningNode();
-          rn.setNode(n);
-          this.nodes.put(NID_TEST, rn);
-          break;
-        }
         default: {
-          break;
+          throw new IllegalStateException("Mode " + mode + " does not exist.");
         }
       }
     }

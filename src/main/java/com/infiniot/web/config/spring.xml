@@ -31,14 +31,12 @@
   </bean>
   <bean name="com.infiniot.web.service.WSNService" class="com.infiniot.web.service.impl.WSNServiceImpl">
     <property name="sensorDAO" ref="com.infiniot.web.dao.SensorDAO" />
-    <property name="test0605DAO" ref="com.infiniot.web.dao.Test0605DAO" />
     <property name="userDAO" ref="com.infiniot.web.dao.UserDAO" />
     <property name="nodeDAO" ref="com.infiniot.web.dao.NodeDAO" />
   </bean>
 
   <!-- DAOs -->
   <bean name="com.infiniot.web.dao.SensorDAO" class="com.infiniot.web.dao.hibernate.SensorDAOImpl" />
-  <bean name="com.infiniot.web.dao.Test0605DAO" class="com.infiniot.web.dao.hibernate.Test0605DAOImpl" />
   <bean name="com.infiniot.web.dao.UserDAO" class="com.infiniot.web.dao.hibernate.UserDAOImpl" />
   <bean name="com.infiniot.web.dao.NodeDAO" class="com.infiniot.web.dao.hibernate.NodeDAOImpl" />
 </beans>
