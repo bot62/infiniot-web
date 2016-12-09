@@ -52,7 +52,7 @@ public class WSNServiceImpl implements WSNService {
       case Mode.OFF: {
         return nodeDAO.getNodes();
       }
-      case Mode.FROM_PING32M: {
+      case Mode.FROM_HTTP: {
         return nodeDAO.getNodes("ESIG_N_%");
       }
       case Mode.FIRE_RANDOM: {
@@ -70,7 +70,7 @@ public class WSNServiceImpl implements WSNService {
   public Map<String, Object> getStats(String nid, String sensorName) {
     Map<String, Object> map = new HashMap<>();
     switch (mode) {
-      case Mode.FROM_PING32M: {
+      case Mode.FROM_HTTP: {
         map = this.nodes.get(nid).getStats(sensorName);
         break;
       }
@@ -84,7 +84,7 @@ public class WSNServiceImpl implements WSNService {
   @Override
   public List<Sensor> getSensors(Map<String, String> params) {
     switch (mode) {
-      case Mode.FROM_PING32M: {
+      case Mode.FROM_HTTP: {
         Map<String, Sensor> map = new HashMap<String, Sensor>();
         String nid = params.get("nid");
         // look for node using node id
@@ -119,7 +119,7 @@ public class WSNServiceImpl implements WSNService {
         data = SensorDataHelper.randomDataset(t);
         break;
       }
-      case Mode.FROM_PING32M: {
+      case Mode.FROM_HTTP: {
         data = this.nodes.get(nid).lastDataset();
         break;
       }
@@ -138,7 +138,7 @@ public class WSNServiceImpl implements WSNService {
   @Override
   public void addSensorData(SensorData sensorData, String nid, int index) {
     switch (mode) {
-      case Mode.FROM_PING32M: {
+      case Mode.FROM_HTTP: {
         // look up the correct node device using nid
         this.nodes.get(nid).add(sensorData, index);
         break;
@@ -162,7 +162,7 @@ public class WSNServiceImpl implements WSNService {
   public void updateStats(Map<String, String> params) {
 
     switch (mode) {
-      case Mode.FROM_PING32M: {
+      case Mode.FROM_HTTP: {
         String nid = params.get("nid");
         String sid = params.get("sid").toUpperCase();
         long timestamp = Long.valueOf(params.get("timestamp"));
@@ -205,7 +205,7 @@ public class WSNServiceImpl implements WSNService {
         notification = getNotification(results, node);
         break;
       }
-      case Mode.FROM_PING32M: {
+      case Mode.FROM_HTTP: {
         // TODO: The algorithm is bad and should be changed by somebody.
         // It should only be used in the demonstration.
         //
@@ -294,7 +294,7 @@ public class WSNServiceImpl implements WSNService {
         case Mode.OFF: {
           break;
         }
-        case Mode.FROM_PING32M: {
+        case Mode.FROM_HTTP: {
           List<Sensor> sensors = new ArrayList<>();
           for (Node node : getNodes()) {
             // init running node

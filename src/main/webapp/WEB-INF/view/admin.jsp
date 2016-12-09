@@ -16,8 +16,8 @@
       <c:when test="${mode == '1'}">
         <span id="running-mode" class="label label-danger">Fire Test Random</span>
       </c:when>
-      <c:when test="${mode == '4'}">
-        <span id="running-mode" class="label label-success">From Ping32M</span>
+      <c:when test="${mode == '2'}">
+        <span id="running-mode" class="label label-success">From HTTP/HTTPS</span>
       </c:when>
     </c:choose>
     depuis ${runtime} ms
@@ -29,7 +29,7 @@
       <select name="mode" class="form-control input-sm col-md-2">
         <option value="0" <c:if test="${mode == '0'}">selected</c:if>>OFF</option>
         <option value="1" <c:if test="${mode == '1'}">selected</c:if>>Fire Test Random</option>
-        <option value="4" <c:if test="${mode == '4'}">selected</c:if>>From Ping32M</option>
+        <option value="4" <c:if test="${mode == '2'}">selected</c:if>>From HTTP/HTTPS</option>
       </select>
     </div>
     <div>
