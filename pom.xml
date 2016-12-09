@@ -74,22 +74,6 @@
       <artifactId>spring-jdbc</artifactId>
       <version>${spring.version}</version>
     </dependency>
-    <!-- Spring::Security Frameworks -->
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-core</artifactId>
-      <version>4.0.1.RELEASE</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-openid</artifactId>
-      <version>4.0.1.RELEASE</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-config</artifactId>
-      <version>4.0.1.RELEASE</version>
-    </dependency>
     <!-- struts -->
     <dependency>
       <groupId>org.apache.struts</groupId>
