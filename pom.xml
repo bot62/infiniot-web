@@ -92,12 +92,6 @@
       <artifactId>spring-security-config</artifactId>
       <version>4.0.1.RELEASE</version>
     </dependency>
-    <!-- XML APIs -->
-    <dependency>
-      <groupId>xml-apis</groupId>
-      <artifactId>xml-apis</artifactId>
-      <version>1.4.01</version>
-    </dependency>
     <!-- struts -->
     <dependency>
       <groupId>org.apache.struts</groupId>
