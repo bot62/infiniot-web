@@ -14,54 +14,54 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.7</java.version>
-    <spring.version>4.1.6.RELEASE</spring.version>
-    <struts.version>2.3.20</struts.version>
-    <hibernate.version>4.3.10.Final</hibernate.version>
-    <mysql.connector.version>5.1.36</mysql.connector.version>
+    <!-- dependency versions -->
+    <org.apache.struts.version>2.3.20</org.apache.struts.version>
+    <org.hibernate.version>4.3.10.Final</org.hibernate.version>
+    <org.springframework.version>4.1.6.RELEASE</org.springframework.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
-      <version>${spring.version}</version>
+      <version>${org.springframework.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
-      <version>${spring.version}</version>
+      <version>${org.springframework.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>
-      <version>${spring.version}</version>
+      <version>${org.springframework.version}</version>
     </dependency>
     <!-- Spring - Transaction APIs/Managers -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-tx</artifactId>
-      <version>${spring.version}</version>
+      <version>${org.springframework.version}</version>
     </dependency>
     <!-- Spring - Dependency Injection -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
-      <version>${spring.version}</version>
+      <version>${org.springframework.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.struts</groupId>
       <artifactId>struts2-core</artifactId>
-      <version>${struts.version}</version>
+      <version>${org.apache.struts.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.struts</groupId>
       <artifactId>struts2-spring-plugin</artifactId>
-      <version>${struts.version}</version>
+      <version>${org.apache.struts.version}</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
-      <version>${hibernate.version}</version>
+      <version>${org.hibernate.version}</version>
     </dependency>
     <!-- dbcp (Database Connection Pooling) -->
     <dependency>
@@ -82,7 +82,7 @@
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>${mysql.connector.version}</version>
+      <version>5.1.36</version>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
