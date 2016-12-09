@@ -11,13 +11,6 @@
   <name>${project.artifactId}</name>
   <description>Infinite IoT - Web server</description>
 
-  <repositories>
-    <repository>
-      <id>Eclipse Paho Repo</id>
-      <url>https://repo.eclipse.org/content/repositories/paho-releases/</url>
-    </repository>
-  </repositories>
-
   <properties>
     <webapp.name>infiniot</webapp.name>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
