@@ -12,7 +12,6 @@
   <description>Infinite IoT - Web server</description>
 
   <properties>
-    <webapp.name>infiniot</webapp.name>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.7</java.version>
     <spring.version>4.1.6.RELEASE</spring.version>
@@ -175,7 +174,7 @@
         <configuration>
           <url>http://localhost:8080/manager/text</url>
           <server>TomcatServerLocalhost</server>
-          <path>/${webapp.name}</path>
+          <path>/${project.artifactId}</path>
           <username>${username}</username>
           <password>${password}</password>
         </configuration>
