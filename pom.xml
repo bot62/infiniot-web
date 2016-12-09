@@ -11,117 +11,57 @@
   <name>${project.artifactId}</name>
   <description>Infinite IoT - Web server</description>
 
-  <repositories>
-    <repository>
-      <id>Eclipse Paho Repo</id>
-      <url>https://repo.eclipse.org/content/repositories/paho-releases/</url>
-    </repository>
-  </repositories>
-
   <properties>
-    <webapp.name>infiniot</webapp.name>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>1.7</java.version>
-    <spring.version>4.1.6.RELEASE</spring.version>
-    <struts.version>2.3.20</struts.version>
-    <joda-time.version>2.3</joda-time.version>
-    <hibernate.version>4.3.10.Final</hibernate.version>
-    <mysql.connector.version>5.1.36</mysql.connector.version>
-    <mqtt.version>1.0.2</mqtt.version>
+    <!-- dependency versions -->
+    <org.apache.struts.version>2.3.20</org.apache.struts.version>
+    <org.hibernate.version>4.3.10.Final</org.hibernate.version>
+    <org.springframework.version>4.1.6.RELEASE</org.springframework.version>
   </properties>
 
   <dependencies>
-    <!-- Spring::Core Utilities -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
-      <version>${spring.version}</version>
+      <version>${org.springframework.version}</version>
     </dependency>
-    <!-- Spring::Aspect Oriented -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-aop</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-aspects</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-    <!-- Spring::Web Framework -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-web</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-    <!-- Spring::Web Framework -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
-      <version>${spring.version}</version>
+      <version>${org.springframework.version}</version>
     </dependency>
-    <!-- Spring::Object/Relational Mapping -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>
-      <version>${spring.version}</version>
+      <version>${org.springframework.version}</version>
     </dependency>
-    <!-- Spring::Transaction APIs/Managers -->
+    <!-- Spring - Transaction APIs/Managers -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-tx</artifactId>
-      <version>${spring.version}</version>
+      <version>${org.springframework.version}</version>
     </dependency>
-    <!-- Spring::Dependency Injection -->
+    <!-- Spring - Dependency Injection -->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
-      <version>${spring.version}</version>
+      <version>${org.springframework.version}</version>
     </dependency>
-    <!-- Spring::JDBC Extensions -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jdbc</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
-    <!-- Spring::Security Frameworks -->
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-core</artifactId>
-      <version>4.0.1.RELEASE</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-openid</artifactId>
-      <version>4.0.1.RELEASE</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.security</groupId>
-      <artifactId>spring-security-config</artifactId>
-      <version>4.0.1.RELEASE</version>
-    </dependency>
-    <!-- XML APIs -->
-    <dependency>
-      <groupId>xml-apis</groupId>
-      <artifactId>xml-apis</artifactId>
-      <version>1.4.01</version>
-    </dependency>
-    <!-- struts -->
     <dependency>
       <groupId>org.apache.struts</groupId>
       <artifactId>struts2-core</artifactId>
-      <version>${struts.version}</version>
+      <version>${org.apache.struts.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.struts</groupId>
       <artifactId>struts2-spring-plugin</artifactId>
-      <version>${struts.version}</version>
+      <version>${org.apache.struts.version}</version>
     </dependency>
-    <!-- hibernate -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
-      <version>${hibernate.version}</version>
+      <version>${org.hibernate.version}</version>
     </dependency>
     <!-- dbcp (Database Connection Pooling) -->
     <dependency>
@@ -129,35 +69,20 @@
       <artifactId>commons-dbcp</artifactId>
       <version>1.4</version>
     </dependency>
-    <!-- JSON utility -->
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
       <version>20150729</version>
     </dependency>
-    <!-- log4j -->
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
       <version>1.2.14</version>
     </dependency>
-    <!-- MySQL Connector -->
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
-      <version>${mysql.connector.version}</version>
-    </dependency>
-    <!-- Joda-Time -->
-    <dependency>
-      <groupId>joda-time</groupId>
-      <artifactId>joda-time</artifactId>
-      <version>${joda-time.version}</version>
-    </dependency>
-    <!-- To map JodaTime with database type -->
-    <dependency>
-      <groupId>org.jadira.usertype</groupId>
-      <artifactId>usertype.core</artifactId>
-      <version>3.0.0.CR1</version>
+      <version>5.1.36</version>
     </dependency>
     <dependency>
       <groupId>javax.servlet</groupId>
@@ -182,58 +107,19 @@
         <configuration>
           <url>http://localhost:8080/manager/text</url>
           <server>TomcatServerLocalhost</server>
-          <path>/${webapp.name}</path>
+          <path>/${project.artifactId}</path>
           <username>${username}</username>
           <password>${password}</password>
         </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
-        <version>2.1</version>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-            <configuration>
-              <!-- These filters have been applied according to : "Invalid 
-                signature file" when attempting
-                to run a .jar http://stackoverflow.com/questions/999489/invalid-signature-file-when-attempting-to-run-a-jar -->
-              <filters>
-                <filter>
-                  <artifact>*:*</artifact>
-                  <excludes>
-                    <exclude>META-INF/*.SF</exclude>
-                    <exclude>META-INF/*.DSA</exclude>
-                    <exclude>META-INF/*.RSA</exclude>
-                  </excludes>
-                </filter>
-              </filters>
-              <transformers>
-                <transformer
-                  implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                  <mainClass>hello.HelloWorld</mainClass>
-                </transformer>
-              </transformers>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.3</version>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.6</version>
       </plugin>
     </plugins>
   </build>
