@@ -10,14 +10,12 @@ Inifiot Web is a server-side solution for IoT system monitoring.
 
         CREATE DATABASE infiniot CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-* Import the database structure in terminal. Our default (username, password)
-  setting is `(root, root)`
+* Import the database structure in terminal.
 
-        mysql -u root -p infiniot < ./database/infiniot.sql
+        mysql -u <username> -p infiniot < ./database/infiniot.sql
 
-If you want to use your own the database setting, you can modify the shell
-command above and modify the configuration in application context file
-`./src/main/webapp/WEB-INF/applicationContext.xml`.
+* Edit your `username` and `password` in
+  `./src/main/webapp/WEB-INF/applicationContext.xml`.
 
 ## Contributions
 
