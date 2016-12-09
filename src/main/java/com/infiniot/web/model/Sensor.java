@@ -43,6 +43,12 @@ public class Sensor {
     this.currentValue = currentValue;
   }
 
+  public Sensor(String sid, String type, String name) {
+    this.sid = sid;
+    this.type = type;
+    this.name = name;
+  }
+
   public Sensor(String sid, String type, double currentValue, String building, String floor,
       String room, String description) {
     this.sid = sid;
