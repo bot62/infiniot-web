@@ -9,9 +9,13 @@
 
   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
     <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+
+    <!-- EDIT ME: MODIFY THE DATABASE CONNECTION HERE -->
+
     <property name="url" value="jdbc:mysql://localhost:3306/infiniot" />
     <property name="username" value="root" />
     <property name="password" value="root" />
+
     <property name="maxActive" value="20" />
     <property name="maxIdle" value="5" />
     <property name="maxWait" value="100" />
