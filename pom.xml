@@ -51,12 +51,6 @@
       <artifactId>spring-context</artifactId>
       <version>${spring.version}</version>
     </dependency>
-    <!-- Spring::JDBC Extensions -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jdbc</artifactId>
-      <version>${spring.version}</version>
-    </dependency>
     <!-- struts -->
     <dependency>
       <groupId>org.apache.struts</groupId>
