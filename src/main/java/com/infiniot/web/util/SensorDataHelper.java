@@ -19,7 +19,8 @@ import com.infiniot.web.model.SensorData;
 public class SensorDataHelper {
 
   private static final Logger log = Logger.getLogger(SensorDataHelper.class);
-  private static String[] sids = {"Example Sensor 1", "Example Sensor 2", "Example sensor 3"};
+  public static String[] EX_SENSOR_IDS =
+      {"Example Sensor 1", "Example Sensor 2", "Example sensor 3"};
 
   public SensorDataHelper() {
 
@@ -32,10 +33,9 @@ public class SensorDataHelper {
    * @return the list of sensor data instances
    */
   public static SensorData[] randomDataset(long timestamp) {
-    SensorData[] dataset = new SensorData[sids.length];
-    for (int i = 0; i < sids.length; i++) {
-      SensorData s = generate(sids[i], timestamp);
-      dataset[i] = s;
+    SensorData[] dataset = new SensorData[EX_SENSOR_IDS.length];
+    for (int i = 0; i < EX_SENSOR_IDS.length; i++) {
+      dataset[i] = generate(EX_SENSOR_IDS[i], timestamp);
     }
     return dataset;
   }

@@ -1,3 +1,5 @@
+[![Build Status][travis-img]][travis]
+
 # Infiniot Web
 
 Inifiot Web is a server-side solution for IoT system monitoring.
@@ -38,6 +40,8 @@ We use [Google Java Code Style][style-java] for this repo.
 * Other types of file
   * No solution yet
 
+[travis]: https://travis-ci.org/infiniot/infiniot-web
+[travis-img]: https://travis-ci.org/infiniot/infiniot-web.svg?branch=master
 [js-format]: https://github.com/google/closure-library/wiki/Formatting-.js-with-clang-format
 [so-format]: http://stackoverflow.com/questions/1601793/how-do-i-modify-eclipse-code-formatting
 [style-java]: https://google.github.io/styleguide/javaguide.html

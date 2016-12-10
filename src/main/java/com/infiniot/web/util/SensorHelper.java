@@ -23,11 +23,13 @@ public class SensorHelper {
   public static Map<String, Sensor> asMap(List<Sensor> sensors) {
     Map<String, Sensor> map = new HashMap<>();
     for (Sensor s : sensors) {
-      if (s.getName() != null && s.getSid() != null) {
-        map.put(s.getName(), s);
-      } else {
+      if (s.getSid() == null) {
+        throw new NullPointerException("Sensor sid is null");
+      }
+      if (s.getName() == null) {
         throw new NullPointerException("Sensor name is null");
       }
+      map.put(s.getName(), s);
     }
     return map;
   }
