@@ -1,50 +1,82 @@
 package com.infiniot.web.dao.hibernate;
 
-import java.util.List;
-
-import javax.transaction.Transactional;
-
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
-
 import com.infiniot.web.dao.AbstractDAO;
 import com.infiniot.web.dao.NodeDAO;
 import com.infiniot.web.model.Node;
+import java.util.List;
+import javax.persistence.EntityManager;
 
-@Transactional
-public class NodeDAOImpl extends AbstractDAO implements NodeDAO {
+/**
+ * @author bot62
+ */
+public class NodeDAOImpl extends AbstractDAO<Node> implements NodeDAO {
 
+  public void Node() {
+
+  }
+
+  // Constructor for unit testing
+  // TODO find a better approach, e.g. CDI
+  NodeDAOImpl(EntityManager em) {
+    super.em = em;
+  }
+
+  @Override
   public void addNode(Node n) {
     persist(n);
   }
 
-  public Node getNode(String nid) {
-    Criteria criteria = getSession().createCriteria(Node.class);
-    criteria.add(Restrictions.eq("id", nid));
-    return (Node) criteria.uniqueResult();
+  @Override
+  public Node getNode(String nodeId) {
+    return em.find(Node.class, nodeId);
   }
 
   @Override
+  @Deprecated
   public List<Node> getNodes() {
-    Criteria criteria = getSession().createCriteria(Node.class);
-    @SuppressWarnings("unchecked")
-    List<Node> nodes = criteria.list();
-    return nodes;
+    return findAll();
   }
 
+  @Override
+  @Deprecated
   public List<Node> getNodes(String location) {
-    Criteria criteria = getSession().createCriteria(Node.class);
-    criteria.add(Restrictions.like("id", location));
-    @SuppressWarnings("unchecked")
-    List<Node> nodes = criteria.list();
-    return nodes;
+    // TODO
+    return null;
   }
 
+  @Override
   public void updateNode(Node n) {
-    getSession().update(n);
-  }
-
-  public void updateNodes(List<Node> sensors) {
 
   }
+
+  @Override
+  public void updateNodes(List<Node> nodes) {
+
+  }
+
+  @Override
+  public List<Node> findAll() {
+    return em.createQuery("select n from Node n", Node.class).getResultList();
+  }
+
+  @Override
+  public void update(Node n) {
+    // TODO
+  }
+
+  @Override
+  public void update(Iterable<Node> nodes) {
+    // TODO
+  }
+
+  @Override
+  public void update(Node... nodes) {
+    // TODO
+  }
+
+  @Override
+  public void delete(Node node) {
+    // TODO
+  }
+
 }

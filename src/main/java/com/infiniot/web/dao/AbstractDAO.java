@@ -1,32 +1,50 @@
 package com.infiniot.web.dao;
 
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class AbstractDAO {
+/**
+ * Abstract data access object (DAO).
+ *
+ * @param <T> The entity type of the access object.
+ */
+public abstract class AbstractDAO<T> {
 
-  @Autowired
-  private SessionFactory sessionFactory;
+  @PersistenceContext
+  protected EntityManager em;
 
-  protected Session getSession() {
-    return sessionFactory.getCurrentSession();
+  public void persist(T entity) {
+    em.persist(entity);
   }
 
-  protected SessionFactory getSessionFactory() {
-    return sessionFactory;
+  public abstract List<T> findAll();
+
+  public T find(String entityId) {
+    throw new UnsupportedOperationException("Not implemented yet.");
   }
 
-  protected void setSessionFactory(SessionFactory sessionFactory) {
-    this.sessionFactory = sessionFactory;
+  public void delete(T entity) {
+    throw new UnsupportedOperationException("Not implemented yet.");
   }
 
-  public void persist(Object entity) {
-    getSession().persist(entity);
+  public void update(T entity) {
+    throw new UnsupportedOperationException("Not implemented yet.");
   }
 
-  public void delete(Object entity) {
-    getSession().delete(entity);
+  public void update(Iterable<T> entities) {
+    throw new UnsupportedOperationException("Not implemented yet.");
+  }
+
+  public void update(T... entities) {
+    throw new UnsupportedOperationException("Not implemented yet.");
+  }
+
+  // TODO delete this method before PR
+  @Deprecated
+  public Session getSession() {
+    return null;
   }
 
 }

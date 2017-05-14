@@ -15,7 +15,7 @@ import com.infiniot.web.dao.SensorDAO;
 import com.infiniot.web.model.Sensor;
 
 @Transactional
-public class SensorDAOImpl extends AbstractDAO implements SensorDAO {
+public class SensorDAOImpl extends AbstractDAO<Sensor> implements SensorDAO {
 
   private final Logger log = Logger.getLogger(SensorDAOImpl.class);
   private final String DEL_BY_ID = "DELETE FROM sensors WHERE id = :id";
@@ -44,16 +44,28 @@ public class SensorDAOImpl extends AbstractDAO implements SensorDAO {
     query.executeUpdate();
   }
 
+  @Override
   public Sensor getSensor(String sid) {
+    return null;
+  }
+
+  @Override
+  public List<Sensor> getSensors() {
+    return null;
+  }
+
+  @Override
+  public Sensor find(String sensorId) {
     Criteria criteria = getSession().createCriteria(Sensor.class);
-    criteria.add(Restrictions.eq("id", sid));
+    criteria.add(Restrictions.eq("id", sensorId));
     log.debug(criteria.toString());
     log.info(((Sensor) criteria.uniqueResult()).toString());
     return (Sensor) criteria.uniqueResult();
   }
 
+  @Override
   @SuppressWarnings("unchecked")
-  public List<Sensor> getSensors() {
+  public List<Sensor> findAll() {
     Criteria criteria = getSession().createCriteria(Sensor.class);
     return criteria.list();
   }
@@ -79,4 +91,5 @@ public class SensorDAOImpl extends AbstractDAO implements SensorDAO {
   public void updateSensors(List<Sensor> sensors) {
 
   }
+
 }

@@ -1,24 +1,45 @@
 package com.infiniot.web.model;
 
-import java.sql.Timestamp;
+import java.time.ZonedDateTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * Class containing information about a node device
- * 
+ *
  * @author mincong-h
  */
+@Entity
 public class Node {
 
+  @Id
+  @Column(name = "id")
   private String nid;
+
   private String type;
+
   private String description;
+
+  @Column(name = "bid")
   private String building;
+
+  @Column(name = "fid")
   private String floor;
+
+  @Column(name = "rid")
   private String room;
+
   private float battery;
-  private Timestamp insertDate;
-  private Timestamp updateDate;
+
+  // TODO what does insert date mean?
+  private ZonedDateTime insertDate;
+
+  // TODO what does update date mean?
+  private ZonedDateTime updateDate;
+
   private double longitude;
+
   private double latitude;
 
   public Node() {
@@ -29,8 +50,9 @@ public class Node {
     this.nid = nid;
   }
 
-  public Node(String nid, String type, double currentValue, String building, String floor,
-      String room, String description, float battery, Timestamp insert, Timestamp update) {
+  public Node(String nid, String type, String building, String floor,
+      String room, String description, float battery, ZonedDateTime insertDate,
+      ZonedDateTime updateDate) {
     this.nid = nid;
     this.type = type;
     this.description = description;
@@ -38,8 +60,8 @@ public class Node {
     this.floor = floor;
     this.room = room;
     this.battery = battery;
-    this.insertDate = insert;
-    this.updateDate = update;
+    this.insertDate = insertDate;
+    this.updateDate = updateDate;
   }
 
   public String getNid() {
@@ -98,20 +120,20 @@ public class Node {
     this.battery = battery;
   }
 
-  public Timestamp getInsertDate() {
-    return this.insertDate;
+  public ZonedDateTime getInsertDate() {
+    return insertDate;
   }
 
-  public void setInsertDate(Timestamp insert) {
-    this.insertDate = insert;
+  public void setInsertDate(ZonedDateTime insertDate) {
+    this.insertDate = insertDate;
   }
 
-  public Timestamp getUpdateDate() {
-    return this.updateDate;
+  public ZonedDateTime getUpdateDate() {
+    return updateDate;
   }
 
-  public void setUpdateDate(Timestamp update) {
-    this.updateDate = update;
+  public void setUpdateDate(ZonedDateTime updateDate) {
+    this.updateDate = updateDate;
   }
 
   public double getLongitude() {
@@ -137,4 +159,5 @@ public class Node {
         + ", insertDate=" + insertDate + ", updateDate=" + updateDate + ", longitude=" + longitude
         + ", latitude=" + latitude + "]";
   }
+
 }

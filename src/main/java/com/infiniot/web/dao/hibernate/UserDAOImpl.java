@@ -1,5 +1,6 @@
 package com.infiniot.web.dao.hibernate;
 
+import java.util.List;
 import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
@@ -10,7 +11,7 @@ import com.infiniot.web.dao.UserDAO;
 import com.infiniot.web.model.User;
 
 @Transactional
-public class UserDAOImpl extends AbstractDAO implements UserDAO {
+public class UserDAOImpl extends AbstractDAO<User> implements UserDAO {
 
   public User getUser(User user) {
     Criteria criteria = getSession().createCriteria(User.class);
@@ -58,4 +59,11 @@ public class UserDAOImpl extends AbstractDAO implements UserDAO {
   public void deleteUserByUid(String uid) {
     // TODO: implementation
   }
+
+  @Override
+  public List<User> findAll() {
+    // TODO: implementation
+    return null;
+  }
+
 }
