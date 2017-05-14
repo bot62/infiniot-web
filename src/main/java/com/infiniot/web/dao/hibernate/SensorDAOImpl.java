@@ -63,11 +63,8 @@ public class SensorDAOImpl extends AbstractDAO<Sensor> implements SensorDAO {
     return (Sensor) criteria.uniqueResult();
   }
 
-  @Override
-  @SuppressWarnings("unchecked")
   public List<Sensor> findAll() {
-    Criteria criteria = getSession().createCriteria(Sensor.class);
-    return criteria.list();
+    return super.findAll(Sensor.class);
   }
 
   @SuppressWarnings("unchecked")

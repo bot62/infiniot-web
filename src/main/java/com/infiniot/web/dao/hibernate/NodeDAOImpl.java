@@ -32,31 +32,36 @@ public class NodeDAOImpl extends AbstractDAO<Node> implements NodeDAO {
   }
 
   @Override
-  @Deprecated
   public List<Node> getNodes() {
     return findAll();
   }
 
   @Override
-  @Deprecated
   public List<Node> getNodes(String location) {
     // TODO
     return null;
   }
 
+  /**
+   * @deprecated Use {@link #update(Node)} instead.
+   */
   @Override
+  @Deprecated
   public void updateNode(Node n) {
 
   }
 
+  /**
+   * @deprecated Use {@link #update(Iterable)} instead.
+   */
   @Override
+  @Deprecated
   public void updateNodes(List<Node> nodes) {
-
+    // TODO
   }
 
-  @Override
   public List<Node> findAll() {
-    return em.createQuery("select n from Node n", Node.class).getResultList();
+    return super.findAll(Node.class);
   }
 
   @Override
@@ -76,7 +81,7 @@ public class NodeDAOImpl extends AbstractDAO<Node> implements NodeDAO {
 
   @Override
   public void delete(Node node) {
-    // TODO
+    em.createQuery("delete n from Node n").executeUpdate();
   }
 
 }

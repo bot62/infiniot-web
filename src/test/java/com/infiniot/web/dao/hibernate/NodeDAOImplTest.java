@@ -70,4 +70,18 @@ public class NodeDAOImplTest {
     assertThat(nodeDAO.getNodes()).containsExactlyElementsOf(existingNodes);
   }
 
+  @Test
+  public void addNode() throws Exception {
+    Node newNode = new Node("node-4");
+
+    em.getTransaction().begin();
+    nodeDAO.addNode(newNode);
+    em.getTransaction().commit();
+
+    List<Node> actualNodes = nodeDAO.getNodes();
+    assertThat(actualNodes).hasSize(4);
+    assertThat(actualNodes).contains(newNode);
+    assertThat(actualNodes).containsAll(existingNodes);
+  }
+
 }

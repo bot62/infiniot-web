@@ -60,10 +60,8 @@ public class UserDAOImpl extends AbstractDAO<User> implements UserDAO {
     // TODO: implementation
   }
 
-  @Override
   public List<User> findAll() {
-    // TODO: implementation
-    return null;
+    return super.findAll(User.class);
   }
 
 }
