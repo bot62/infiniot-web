@@ -1,6 +1,6 @@
 package com.infiniot.web.util;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
@@ -15,14 +15,14 @@ public class SensorDataHelperTest {
 
   @Test
   public void testRandomDataset() {
-
     long timestamp = System.currentTimeMillis();
     SensorData[] randomDS = SensorDataHelper.randomDataset(timestamp);
 
-    assertEquals("3 temperature sensors: [TCA, TCB, TCC]", 3, randomDS.length);
+    assertThat(randomDS).hasSize(3).as("3 temperature sensors: [TCA, TCB, TCC]");
     for (int i = 0; i < randomDS.length; i++) {
-      assertEquals(timestamp, randomDS[i].getTimestamp());
-      assertEquals(SensorDataHelper.EX_SENSOR_IDS[i], randomDS[i].getSid());
+      String expectedSID = SensorDataHelper.EX_SENSOR_IDS[i];
+      assertThat(randomDS[i].getTimestamp()).isEqualTo(timestamp);
+      assertThat(randomDS[i].getSid()).isEqualTo(expectedSID);
     }
   }
 }
