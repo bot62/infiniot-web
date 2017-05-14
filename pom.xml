@@ -45,29 +45,7 @@
   <dependencies>
     <dependency>
       <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
-      <version>${org.springframework.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-      <version>${org.springframework.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-orm</artifactId>
-      <version>${org.springframework.version}</version>
-    </dependency>
-    <!-- Spring - Transaction APIs/Managers -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-tx</artifactId>
-      <version>${org.springframework.version}</version>
-    </dependency>
-    <!-- Spring - Dependency Injection -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
+      <artifactId>spring-beans</artifactId>
       <version>${org.springframework.version}</version>
     </dependency>
     <dependency>
@@ -76,8 +54,8 @@
       <version>${org.apache.struts.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.struts</groupId>
-      <artifactId>struts2-spring-plugin</artifactId>
+      <groupId>org.apache.struts.xwork</groupId>
+      <artifactId>xwork-core</artifactId>
       <version>${org.apache.struts.version}</version>
     </dependency>
     <dependency>
@@ -85,11 +63,10 @@
       <artifactId>hibernate-core</artifactId>
       <version>${org.hibernate.version}</version>
     </dependency>
-    <!-- dbcp (Database Connection Pooling) -->
     <dependency>
-      <groupId>commons-dbcp</groupId>
-      <artifactId>commons-dbcp</artifactId>
-      <version>1.4</version>
+      <groupId>org.jboss.spec.javax.transaction</groupId>
+      <artifactId>jboss-transaction-api_1.2_spec</artifactId>
+      <version>1.0.0.Final</version>
     </dependency>
     <dependency>
       <groupId>org.json</groupId>
@@ -102,25 +79,16 @@
       <version>1.2.14</version>
     </dependency>
     <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.36</version>
-    </dependency>
-    <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>3.1.0</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>jstl</artifactId>
-      <version>1.2</version>
-    </dependency>
-    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.12</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
