@@ -84,4 +84,18 @@ public class NodeDAOImplTest {
     assertThat(actualNodes).containsAll(existingNodes);
   }
 
+  @Test
+  public void updateNode() throws Exception {
+    Node node1 = new Node("node-1");
+    node1.setDescription("Updated Node 1");
+
+    em.getTransaction().begin();
+    nodeDAO.updateNode(node1);
+    em.getTransaction().commit();
+
+    Node actualNode1 = em.find(Node.class, "node-1");
+    assertThat(actualNode1.getNid()).isEqualTo("node-1");
+    assertThat(actualNode1.getDescription()).isEqualTo("Updated Node 1");
+  }
+
 }

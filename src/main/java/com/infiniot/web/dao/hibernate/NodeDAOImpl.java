@@ -47,8 +47,8 @@ public class NodeDAOImpl extends AbstractDAO<Node> implements NodeDAO {
    */
   @Override
   @Deprecated
-  public void updateNode(Node n) {
-
+  public void updateNode(Node node) {
+    update(node);
   }
 
   /**
@@ -57,7 +57,7 @@ public class NodeDAOImpl extends AbstractDAO<Node> implements NodeDAO {
   @Override
   @Deprecated
   public void updateNodes(List<Node> nodes) {
-    // TODO
+    update(nodes);
   }
 
   public List<Node> findAll() {
@@ -65,18 +65,20 @@ public class NodeDAOImpl extends AbstractDAO<Node> implements NodeDAO {
   }
 
   @Override
-  public void update(Node n) {
-    // TODO
+  public void update(Node node) {
+    em.merge(node);
   }
 
   @Override
   public void update(Iterable<Node> nodes) {
-    // TODO
+    nodes.forEach(this::update);
   }
 
   @Override
   public void update(Node... nodes) {
-    // TODO
+    for (Node node : nodes) {
+      em.merge(node);
+    }
   }
 
   @Override
