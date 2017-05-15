@@ -1,72 +1,77 @@
 package com.infiniot.web.dao.hibernate;
 
-import java.util.List;
-import java.util.Map;
-
-import javax.transaction.Transactional;
-
-import org.apache.log4j.Logger;
-import org.hibernate.Criteria;
-import org.hibernate.Query;
-import org.hibernate.criterion.Restrictions;
-
 import com.infiniot.web.dao.AbstractDAO;
 import com.infiniot.web.dao.SensorDAO;
 import com.infiniot.web.model.Sensor;
+import java.util.List;
+import java.util.Map;
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Restrictions;
 
 @Transactional
 public class SensorDAOImpl extends AbstractDAO<Sensor> implements SensorDAO {
 
-  private final Logger log = Logger.getLogger(SensorDAOImpl.class);
-  private final String DEL_BY_ID = "DELETE FROM sensors WHERE id = :id";
-  private final String DEL_ALL = "DELETE FROM sensors";
+  public SensorDAOImpl() {
+
+  }
+
+  SensorDAOImpl(EntityManager em) {
+    super.em = em;
+  }
 
   public void addSensor(Sensor s) {
     persist(s);
   }
 
+  @Override
   public void addSensors(List<Sensor> sensors) {
-
-  }
-
-  public void deleteSensor(String sid) {
-    Query query = getSession().createSQLQuery(DEL_BY_ID);
-    query.setString("id", sid);
-    query.executeUpdate();
-  }
-
-  public void deleteSensors(String[] sids) {
-
-  }
-
-  public void deleteSensors(List<Sensor> sensors) {
-    Query query = getSession().createSQLQuery(DEL_ALL);
-    query.executeUpdate();
+    sensors.forEach(em::persist);
   }
 
   @Override
-  public Sensor getSensor(String sid) {
-    return null;
+  public void deleteSensor(String sid) {
+    em.createQuery("delete from Sensor where id = :id")
+        .setParameter("id", sid)
+        .executeUpdate();
+  }
+
+  @Override
+  public void deleteSensors(String[] sids) {
+    // TODO
+  }
+
+  @Override
+  public void deleteSensors(List<Sensor> sensors) {
+    sensors.forEach(em::remove);
+  }
+
+  @Override
+  public Sensor getSensor(String sensorId) {
+    return em.find(Sensor.class, sensorId);
   }
 
   @Override
   public List<Sensor> getSensors() {
-    return null;
+    return findAll();
   }
 
   @Override
   public Sensor find(String sensorId) {
-    Criteria criteria = getSession().createCriteria(Sensor.class);
-    criteria.add(Restrictions.eq("id", sensorId));
-    log.debug(criteria.toString());
-    log.info(((Sensor) criteria.uniqueResult()).toString());
-    return (Sensor) criteria.uniqueResult();
+    return em.find(Sensor.class, sensorId);
   }
 
   public List<Sensor> findAll() {
     return super.findAll(Sensor.class);
   }
 
+  /**
+   * @deprecated This is a misleading method, it only use the parameter "nid",
+   * the node ID, among all the parameters.
+   */
+  @Override
+  @Deprecated
   @SuppressWarnings("unchecked")
   public List<Sensor> getSensors(Map<String, String> params) {
     String nid = params.get("nid");
@@ -74,19 +79,21 @@ public class SensorDAOImpl extends AbstractDAO<Sensor> implements SensorDAO {
     return criteria.add(Restrictions.eq("nid", nid)).list();
   }
 
-  @SuppressWarnings("unchecked")
+  @Override
   public List<Sensor> getSensorsByNid(String nid) {
-    Query query = getSession().createQuery("FROM Sensor WHERE nid = :nid ");
-    query.setParameter("nid", nid);
-    return query.list();
+    return em.createQuery("FROM Sensor WHERE nid = :nid", Sensor.class)
+        .setParameter("nid", nid)
+        .getResultList();
   }
 
+  @Override
   public void updateSensor(Sensor s) {
-    getSession().update(s);
+    em.merge(s);
   }
 
+  @Override
   public void updateSensors(List<Sensor> sensors) {
-
+    sensors.forEach(this::update);
   }
 
 }

@@ -4,4 +4,8 @@
     <class>com.infiniot.web.model.Node</class>
     <exclude-unlisted-classes />
   </persistence-unit>
+  <persistence-unit name="SensorDAOImplTestPU">
+    <class>com.infiniot.web.model.Sensor</class>
+    <exclude-unlisted-classes />
+  </persistence-unit>
 </persistence>

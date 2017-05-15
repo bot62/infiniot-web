@@ -6,7 +6,6 @@
   <session-factory>
     <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="show_sql">true</property>
-    <mapping resource="com/infiniot/web/mapping/Sensor.hbm.xml" />
     <mapping resource="com/infiniot/web/mapping/SensorData.hbm.xml" />
     <mapping resource="com/infiniot/web/mapping/User.hbm.xml" />
   </session-factory>
